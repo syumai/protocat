@@ -135,5 +135,19 @@ func fromMessage(m *desc.MessageDescriptor) (*builder.MessageBuilder, error) {
 		}
 		mb.AddField(fld)
 	}
+	for _, childMsg := range m.GetNestedMessageTypes() {
+		msg, err := builder.FromMessage(childMsg)
+		if err != nil {
+			return nil, err
+		}
+		mb.AddNestedMessage(msg)
+	}
+	for _, childEnum := range m.GetNestedEnumTypes() {
+		enum, err := builder.FromEnum(childEnum)
+		if err != nil {
+			return nil, err
+		}
+		mb.AddNestedEnum(enum)
+	}
 	return mb, nil
 }

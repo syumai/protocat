@@ -6,4 +6,13 @@ import "google/protobuf/any.proto";
 
 message B {
     google.protobuf.Any any = 1;
+    C c = 2;
+    D d = 3;
+    message C {
+        string value = 1;
+    }
+    enum D {
+        VALUE_UNSPECIFIED = 0;
+        VALUE_SPECIFIED = 1;
+    }
 }
