@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"strings"
 
 	"github.com/jhump/protoreflect/desc"
@@ -22,7 +21,7 @@ func ConcatFiles(importPaths []string, fileNames ...string) (io.Reader, error) {
 	if err != nil {
 		return nil, err
 	}
-	b, err := ioutil.ReadAll(rd)
+	b, err := io.ReadAll(rd)
 	if err != nil {
 		return nil, err
 	}
